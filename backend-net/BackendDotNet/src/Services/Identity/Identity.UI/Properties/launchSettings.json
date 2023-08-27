@@ -1,0 +1,28 @@
+{
+  "profiles": {
+    "SelfHost": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:5001"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  },
+  "EventBus": {
+    "RabbitMQ": {
+      "Host": "localhost",
+      "UserName": "guest",
+      "Password": "guest",
+      "RetryCount": "5",
+      "QueueName": "order-service"
+    }
+  }
+}

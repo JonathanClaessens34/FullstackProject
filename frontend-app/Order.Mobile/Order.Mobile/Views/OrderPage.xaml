@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Order.Mobile.Views.OrderPage"
+             Title="OrderPage"
+             xmlns:views="clr-namespace:Order.Mobile.Views;assembly=Order.Mobile"
+             xmlns:local="clr-namespace:Order.Mobile.ViewModels" 
+             xmlns:model="clr-namespace:Order.Mobile.Models">
+    
+    <VerticalStackLayout x:DataType="local:OrderViewModel"> <!-- Mess naar grid layout (Zien dat dit datatype gedoe klopt)-->
+
+        <Label 
+            Text="TableNr:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <!-- Alles hieronder werkt normaal maar als crash is er maybe ene var nie ingelade -->
+        <!-- invul gedoe voor tafel nummer -->
+        <Entry 
+            MaxLength="25"
+            Style="{StaticResource CommonEntryStyle}"
+            Text="{Binding OrderClass.Table, Mode=TwoWay}"
+            Keyboard="Numeric"
+            BackgroundColor="Gray"/>
+
+
+        <CollectionView x:Name="orderListView"
+                    ItemsSource="{Binding OrderItems}"
+                    SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="model:OrderItem">
+                        <Label Text="{Binding Cocktail.Name}" 
+                            LineBreakMode="NoWrap" 
+                            FontSize="16" />
+                        <Label Text="{Binding Amount}" 
+                            LineBreakMode="NoWrap" 
+                            FontSize="16" />
+                        <Button
+                            Text="Delete"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:OrderViewModel}}, Path=DeleteFromOrderCommand}"	
+                            CommandParameter="{Binding .}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+        <Label 
+            Text="Total price:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+
+        <!-- prijs ingeven-->
+        <!--apparte variabele intern make als fix maybe-->
+        <!--Notify Property Changed-->
+        <Label 
+            Text="{Binding OrderClass.TotalPrice, Mode=OneWay}" 
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        
+      
+        <Button
+            Text="Place Order"
+            Command="{Binding Source={RelativeSource AncestorType={x:Type local:OrderViewModel}}, Path=FinalizeOrderCommand}"	
+            CommandParameter="{Binding .}"
+            />
+
+
+        
+    </VerticalStackLayout>
+</ContentPage>

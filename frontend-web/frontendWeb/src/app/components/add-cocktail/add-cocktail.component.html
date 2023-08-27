@@ -1,0 +1,28 @@
+<form *ngIf="showAddCocktail" class="add-form" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+        <label for="serialNumber">Seriële nummer</label>
+        <input type="text" name="serialNumber" [(ngModel)]="serialNumber" id="serialNumber"
+            placeholder="Voeg seriële nummer toe" />
+    </div>
+    <div class="form-control">
+        <label for="name">Naam</label>
+        <input type="text" name="name" [(ngModel)]="name" id="name" placeholder="Voeg naam toe" />
+    </div>
+    <div class="form-control">
+        <label for="purchasePrice">Aankoopprijs</label>
+        <input type="text" name="purchasePrice" [(ngModel)]="purchasePrice" id="purchasePrice"
+            placeholder="Voeg aankkoopprijs toe" />
+    </div>
+    <div class="form-control">
+        <label for="category">Categorie</label>
+        <select name="category" [(ngModel)]="category" id="category">
+            <option *ngFor="let option of categoryOptions" [value]="option.value" [label]="option.label">{{ option.label
+                }}</option>
+        </select>
+    </div>
+    <div class="form-control">
+        <label for="imageUrl">Afbeelding URL</label>
+        <input type="text" name="imageUrl" [(ngModel)]="imageUrl" id="imageUrl" placeholder="Voeg afbeelding URL toe" />
+    </div>
+    <input type="submit" value="Bewaar cocktail">
+</form>

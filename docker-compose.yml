@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  frontend:
+    build:
+      context: ./frontend-web/frontendWeb
+      args:
+        - API_URL=localhost:8083
+    ports:
+      - 3000:3000

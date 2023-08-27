@@ -1,0 +1,15 @@
+<form *ngIf="showAddPopupbar" class="add-form" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+        <label for="name">Naam</label>
+        <input type="text" name="name" [(ngModel)]="name" id="name" placeholder="Voeg naam toe" />
+    </div>
+    <div class="form-control">
+        <label for="location">Location</label>
+        <input type="text" name="location" [(ngModel)]="location" id="location" placeholder="Voeg locatie toe" />
+    </div>
+    <div class="form-control">
+        <label for="brewer">Brouwer</label>
+        <input type="text" name="brewer" [(ngModel)]="brewer" id="brewer" placeholder="Voeg brouwer toe" />
+    </div>
+    <input type="submit" value="Popupbar opslaan">
+</form>

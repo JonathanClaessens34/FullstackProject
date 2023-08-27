@@ -1,0 +1,42 @@
+server:
+  port: 8083
+
+spring:
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    probability: 1.0
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*" #Probeer localhost:4200 voor de zekerheid in de toekomst
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: menu-service
+          uri: lb://menu-service
+          predicates:
+            - Path=/menu/**
+          filters:
+            - RewritePath=/menu/(?<path>.*), /$\{path}
+        - id: popupbar-service
+          uri: lb://popupbar-service
+          predicates:
+            - Path=/popupbar/**
+          filters:
+            - RewritePath=/popupbar/(?<path>.*), /$\{path}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+
+

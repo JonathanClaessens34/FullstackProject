@@ -1,0 +1,29 @@
+<div class="container table-responsive">
+  <table class="popupbar table table-striped">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">Naam</th>
+      <th scope="col">Eigenaar</th>
+      <th scope="col">Locatie</th>
+      <th scope="col">Aantal besteld</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let popupbar of popupbars; let i = index">
+      <td>{{ popupbar.name }}</td>
+      <td>{{ popupbar.brewer }}</td>
+      <td>{{ popupbar.location }}</td>
+      <td>{{AantalBesteld[i] ? AantalBesteld[i] : 0}}</td>
+
+      <td><button (click)="navigateToCocktailmenu(popupbar.id)">Cocktail menu</button></td>
+      <td><fa-icon (click)="onDelete(popupbar)" [ngStyle]="{color: 'red'}" [icon]="faTimes"></fa-icon></td>
+    </tr>
+    </tbody>
+  </table>
+<!--  <app-popupbar-item *ngFor="let popupbar of popupbars" [popupbar]="popupbar"
+  (onDeletePopupbar)="deletePopupbar(popupbar)"></app-popupbar-item>-->
+  <app-popupbar-add></app-popupbar-add>
+</div>
+
+
+<!--<app-popupbar-item *ngFor="let popupbar of popupbars" [popupbar]="popupbar"></app-popupbar-item>-->

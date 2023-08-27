@@ -1,0 +1,34 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Order.Mobile"
+             x:Class="Order.Mobile.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String">
+                <On Platform="iOS, Android" Value="FontAwesome-Solid" />
+                <On Platform="WinUI" Value="Assets/Fonts/Font_Awesome_5_Free-Solid-900.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <x:String x:Key="BasketIcon">&#xf07a;</x:String>
+
+            <FontImageSource
+                x:Key="BasketIconImageSource"
+                FontFamily="{StaticResource FontAwesomeSolid}"
+                Glyph="{StaticResource BasketIcon}" />
+            
+            <FontImageSource
+                x:Key="BasketIconForTitleImageSource"
+                FontFamily="{StaticResource FontAwesomeSolid}"
+                Glyph="{StaticResource BasketIcon}"
+                Size="22"
+                Color="{AppThemeBinding Dark={StaticResource DarkFontColor}, Light={StaticResource LightFontColor}}"/>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

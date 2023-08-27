@@ -1,0 +1,28 @@
+<app-header headTitle="Cocktail overview"></app-header>
+<div class="container table-responsive">
+  <input type="text" [(ngModel)]="searchQuery" placeholder="Search..." class="float-end " style="margin: 12px 0 0 0; ">
+  <table class="popupbar table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Seriële nummer</th>
+        <th scope="col">Naam</th>
+        <th scope="col">Aankoopprijs</th>
+        <th scope="col">Categorie</th>
+        <th scope="col">Afbeelding URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cocktails | searchFilter:searchQuery">
+        <td>{{ item.serialNumber }}</td>
+        <td>{{ item.name }}</td>
+        <td>€ {{ item.purchasePrice | number: '1.2-2' }}</td>
+        <td>{{ item.category }}</td>
+        <td><img class="img-fluid" alt="image" style="max-width: 5em; max-height: 5em;" [src]="item.imageUrl">
+        </td>
+        <td><fa-icon (click)="onEdit(item)" [ngStyle]="{color: 'green'}" [icon]="faEdit"></fa-icon></td>
+        <td><fa-icon (click)="onDelete(item)" [ngStyle]="{color: 'red'}" [icon]="faTimes"></fa-icon></td>
+      </tr>
+    </tbody>
+  </table>
+  <app-cocktail-add></app-cocktail-add>
+</div>

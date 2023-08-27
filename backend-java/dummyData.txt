@@ -1,0 +1,9 @@
+delete from popupbar;
+insert into popupbar (id, brewer, location, name)
+values
+(100, 'Tyrones beverages', 'compton, USA', 'Demarcus Cousins'),
+(101, 'Jamal beverages', 'compton, USA', 'Demarcus Cousins');
+delete from cocktail;
+insert into cocktail (serial_number, category, image_url, name, purchase_price, selling_price)
+values (45698798789, 0, 'https://imgs.search.brave.com/23wDfD9WGNSRm7j4sonvmaooO7fDwstCzM6e3AbKtbo/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/YmVsbGFuYWlqYXN0/eWxlLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAxOC8wNS9y/b3NlLXdpbmUtY29j/a3RhaWwtc3VtbWVy/LmpwZw', 'Coke drink', 3.3, 8.9),
+(49849984455, 1, 'https://imgs.search.brave.com/dVF6MUfzJ7cDmnJJMxkSmE4u3mXjlQPVxEnJfHiGid8/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9zdGF0/aWMuZmFucGFnZS5p/dC93cC1jb250ZW50/L3VwbG9hZHMvc2l0/ZXMvMjIvMjAyMC8w/NC9pU3RvY2stMTE0/OTg5NjgyMS5qcGc', 'Lava drink', 5.5, 10.5);

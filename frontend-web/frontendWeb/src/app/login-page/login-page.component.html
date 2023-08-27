@@ -1,0 +1,15 @@
+<app-header headTitle="Login"></app-header>
+
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="username">Gebruikersnaam: </label>
+            <input class="form-control" type="text" formControlName="username" id="username" />
+        </div>
+        <div class="form-group">
+            <label for="password">Paswoord: </label>
+            <input class="form-control" type="password" formControlName="password" id="password" />
+        </div>
+        <input class="btn btn-primary m-3" type="submit" value="Log in">
+    </form>
+</div>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Order.Mobile.Views.MenuPage"
+             Title="MenuPage"
+             xmlns:views="clr-namespace:Order.Mobile.Views;assembly=Order.Mobile"
+             xmlns:local="clr-namespace:Order.Mobile.ViewModels" 
+             xmlns:model="clr-namespace:Order.Mobile.Models">
+
+    <Grid ColumnSpacing="0" RowSpacing="0"> <!-- spacing is de ruimte tussen grid gedoe -->
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="2*" />
+            <RowDefinition  />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label Padding="10" Text="Name:" FontSize="Medium"/>
+        <Label Grid.Column="1" Padding="10"  Text="{Binding CocktailMenu.barName}" FontSize="Small"/>
+
+
+
+        <RefreshView Grid.Row="1" Grid.ColumnSpan="2" x:DataType="local:MenuViewModel">
+        <CollectionView x:Name="CocktailsListView"
+                    ItemsSource="{Binding Cocktails}"
+                    SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" Padding="10" x:DataType="model:MenuItem">
+                        
+                        <Image Source="{Binding Cocktail.ImageUrl}" /> <!-- kan zijn da dit problemen geeft -->
+                        
+                        <Label Margin="5,0,0,0" Text="{Binding Cocktail.Name}" 
+                                LineBreakMode="NoWrap" 
+                                FontSize="16" />
+                        <Label Margin="10,0,0,0" Text="Price: €" 
+                            LineBreakMode="NoWrap" 
+                            FontSize="16" />
+                        <Label Margin="0,0,0,0" Text="{Binding Price}" 
+                            LineBreakMode="NoWrap" 
+                            FontSize="16" />
+                        <Button
+                            Margin="20,0,0,0"
+                            Text="add"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:MenuViewModel}}, Path=AddToOrderCommand}"	
+                            CommandParameter="{Binding .}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        </RefreshView>
+
+
+        <!-- aanpassen zonder badge vieuw doen maybe -->
+        <!-- Basket button, eindelijk -->
+
+        <ImageButton
+            Grid.Column="2"
+            Grid.Row="2"
+            WidthRequest="100"
+            HeightRequest="100"
+            Source="cocktail.png"
+            Command="{Binding ViewOrderCommand}"
+            BackgroundColor="#03dbfc"
+            Padding="16"
+            CornerRadius="8" />
+
+        <!--
+        <views:BadgeView
+            x:Name="badge"
+            Grid.Column="2"
+            Grid.Row="2" 
+            Padding="8"
+            Margin="16"
+            Text="{Binding BadgeCount, Mode=OneWay}"
+            BadgeColor="{AppThemeBinding Light={StaticResource DarkBackgroundColor}, Dark={StaticResource LightBackgroundColor}}"
+            TextColor="{AppThemeBinding Light={StaticResource DarkForegroundColor}, Dark={StaticResource LightForegroundColor}}"
+            HorizontalOptions="End"
+            VerticalOptions="End">
+            <ImageButton
+                    Source="cocktail.png"
+                    Command="{Binding ViewBasketCommand}"
+                    BackgroundColor="#15209e"
+                    Padding="16"
+                    CornerRadius="8" />
+        </views:BadgeView>
+        
+        -->
+
+
+    </Grid>
+
+</ContentPage>

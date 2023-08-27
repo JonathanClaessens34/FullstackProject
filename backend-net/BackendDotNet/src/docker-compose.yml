@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  ordermanagement.api:
+    image: ${DOCKER_REGISTRY-}ordermanagementapi
+    build:
+      context: .
+      dockerfile: Services/OrderManagement/OrderManagement.Api/Dockerfile
+    depends_on:
+      - sqldata
+      - rabbitmq
+
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest 
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  identity.ui:
+    image: ${DOCKER_REGISTRY-}identityui
+    build:
+      context: .
+      dockerfile: Services/Identity/Identity.UI/Dockerfile
+    depends_on:
+      - sqldata
+      - rabbitmq
+      - ordermanagement.api
+
+
+

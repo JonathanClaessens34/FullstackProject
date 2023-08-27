@@ -1,0 +1,24 @@
+<app-header headTitle="Cocktail menu"></app-header>
+<!-- <p>cocktail-menu works!</p> -->
+<div class="container table-responsive">
+    <table class="popupbar table table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Naam</th>
+                <th scope="col">Verkooprijs</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="menu">
+            <tr *ngFor="let cocktail of menu.cocktails">
+                <td>{{ cocktail.cocktail.name }}</td>
+                <!-- TODO: Display with 2 points after the comma -->
+                <td>€ {{ cocktail.sellingPrice | number: '1.2-2'  }}</td>
+              <td *ngIf="cocktail.cocktail.serialNumber !== undefined">
+                <fa-icon (click)="onDelete(cocktail.cocktail.serialNumber)" [icon]="faTimes" [ngStyle]="{color: 'red'}"></fa-icon>
+              </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <app-cocktail-menu-add [menuId]="this.menu.id"></app-cocktail-menu-add>
+</div>

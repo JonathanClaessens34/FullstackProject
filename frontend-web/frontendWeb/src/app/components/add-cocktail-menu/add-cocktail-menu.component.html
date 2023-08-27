@@ -1,0 +1,19 @@
+<form *ngIf="showAddCocktail" class="add-form" (ngSubmit)="onSubmit()">
+<!--    <div class="form-control">
+        <label for="cocktailId">Cocktail ID</label>
+        <input type="text" name="cocktailId" [(ngModel)]="cocktailId" id="cocktailId" placeholder="Add cocktailId" />
+    </div>-->
+
+  <div class="form-control">
+    <label for="cocktail">Cocktail</label>
+    <select name="cocktail" [(ngModel)]="cocktailId" id="cocktail">
+      <option *ngFor="let cocktail of cocktails" [value]="cocktail.serialNumber">{{cocktail.name}}</option>
+    </select>
+  </div>
+    <div class="form-control">
+        <label for="sellingPrice">Verkooprijs</label>
+        <input type="text" name="sellingPrice" [(ngModel)]="price" id="sellingPrice"
+            placeholder="Voeg Verkooprijs toe" />
+    </div>
+    <input type="submit" value="Save cocktail">
+</form>

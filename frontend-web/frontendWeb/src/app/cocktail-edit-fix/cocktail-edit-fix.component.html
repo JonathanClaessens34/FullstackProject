@@ -1,0 +1,26 @@
+<div class="w-50 mx-auto">
+<form class="add-form m-3" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Naam</label>
+      <input class="form-control" type="text" name="name" [(ngModel)]="name" id="name" placeholder="Voeg naam toe" />
+    </div>
+    <div class="form-group">
+      <label for="purchasePrice">Aankoopprijs</label>
+      <input class="form-control" type="text" name="purchasePrice" [(ngModel)]="purchasePrice" id="purchasePrice"
+        placeholder="Voeg aankkoopprijs toe" />
+    </div>
+    <div class="form-group">
+      <label for="category">Categorie</label>
+      <select class="custom-select" name="category" [(ngModel)]="category" id="category">
+        <option *ngFor="let option of categoryOptions" [value]="option.value" [label]="option.label">{{ option.label}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="imageUrl">Afbeelding URL</label>
+      <input class="form-control" type="text" name="imageUrl" [(ngModel)]="imageUrl" id="imageUrl" placeholder="Voeg afbeelding URL toe" />
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary" type="submit" value="Bewaar cocktail">
+    </div>
+  </form>
+</div>
